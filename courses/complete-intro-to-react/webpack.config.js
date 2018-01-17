@@ -4,8 +4,8 @@ const webpack = require("webpack");
 module.exports = {
   context: __dirname,
   entry: [
-    "react-hotloader/path",
-    "webpack-dev-server/client?http://localhost:8080",
+    "react-hot-loader/patch",
+    "webpack-dev-server/client?http://localhost:8085",
     "webpack/hot/only-dev-server",
     "./js/ClientApp.jsx"
   ],
@@ -30,7 +30,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
-  ]
+  ],
   module: {
     rules: [
       {

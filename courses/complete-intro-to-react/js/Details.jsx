@@ -11,25 +11,35 @@ class Details extends Component {
       rating: ""
     }
   };
-  componentDidMount () {
+  componentDidMount() {
     axios
-      .get(`http://localhost:3000/${this.props.show.imdbID`)
-      .then((response : {data: {rating: string}}) => {
-      this.setState({ apiData: response.data })
-    })
+      .get(`http://localhost:3000/${this.props.show.imdbID}`)
+      .then((response: { data: { rating: string } }) => {
+        this.setState({ apiData: response.data });
+      });
   }
   props: {
     show: Show
   };
   render() {
     const { title, description, year, poster, trailer } = this.props.show;
+    let ratingComponent;
+    if (this.state.apiData.rating) {
+      ratingComponent = <h3>{this.state.apiData.rating}</h3>;
+    } else {
+      ratingComponent = <Spinner />;
+    }
     return (
       <div className="details">
         <Header />
         <section>
           <h1>{title}</h1>
           <h2>({year})</h2>
-          <img src={`/public/img/posters/${poster}`} alt={`Poster for ${title}`} />
+          {ratingComponent}
+          <img
+            src={`/public/img/posters/${poster}`}
+            alt={`Poster for ${title}`}
+          />
           <p>{description}</p>
         </section>
         <div>

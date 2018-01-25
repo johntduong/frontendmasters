@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Wrapper = styled(Link)`
+const Wrapper = styled((Link: any))`
   width: 32%;
   border: 2px solid #333;
   border-radius: 4px;
